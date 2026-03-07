@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mfERG HCQ Toxicity Classifier</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- ONNX Runtime Web CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>mfERG HCQ Toxicity Classifier</h1>
+            <p>Predict Hydroxychloroquine (HCQ) toxicity based on 7-ring P1nv values.</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Enter P1nv Values (nV)</h2>
+                <form id="prediction-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="R1_P1nv">Ring 1:</label>
+                            <input type="number" id="R1_P1nv" step="any" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="R2_P1nv">Ring 2:</label>
+                            <input type="number" id="R2_P1nv" step="any" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="R3_P1nv">Ring 3:</label>
+                            <input type="number" id="R3_P1nv" step="any" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="R4_P1nv">Ring 4:</label>
+                            <input type="number" id="R4_P1nv" step="any" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="R5_P1nv">Ring 5:</label>
+                            <input type="number" id="R5_P1nv" step="any" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="R6_P1nv">Ring 6:</label>
+                            <input type="number" id="R6_P1nv" step="any" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="R7_P1nv">Ring 7:</label>
+                            <input type="number" id="R7_P1nv" step="any" required>
+                        </div>
+                    </div>
+                    <button type="submit" id="predict-btn" disabled>Loading Model...</button>
+                </form>
+            </section>
+
+            <section id="result-section" class="result-section hidden">
+                <h2>Prediction Result</h2>
+                <div id="result-card" class="result-card">
+                    <div class="result-main">
+                        <span id="prediction-label">---</span>
+                    </div>
+                    <div id="result-indicator" class="indicator"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>For research purposes only. &copy; 2026 Charles Walker & Stuart Eiffert.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
