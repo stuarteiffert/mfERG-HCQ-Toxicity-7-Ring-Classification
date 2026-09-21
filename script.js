@@ -259,7 +259,7 @@ function verdictFor(rawToxicProb) {
         return {
             text: 'Uncertain',
             className: 'uncertain',
-            note: 'Borderline result - interpret with clinical correlation.'
+            note: 'Borderline result.'
         };
     }
     if (toxicProb > UNCERTAIN_UPPER) {
@@ -284,9 +284,9 @@ function displayResult(toxicProb) {
         resultDetails.textContent += ` - ${verdict.note}`;
     }
 
-    // The bar spans the meaningful 50%-100% confidence range.
-    const fillPercent = (confidence - 50) * 2;
-    confidenceFill.style.width = `${fillPercent}%`;
+    // The bar fills to the confidence value itself, so it reads directly
+    // against the number shown above it.
+    confidenceFill.style.width = `${confidence}%`;
     confidenceFill.className = 'confidence-fill bg-' + verdict.className;
 
     resultSection.scrollIntoView({ behavior: 'smooth' });

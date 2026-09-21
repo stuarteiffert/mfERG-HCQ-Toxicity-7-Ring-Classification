@@ -184,7 +184,7 @@ button:disabled {
     transition: background-color 0.3s;
 }
 
-/* Fill spans the meaningful 50%-100% confidence range. */
+/* Fill width equals the reported confidence percentage. */
 .confidence-fill {
     height: 100%;
     width: 0;
