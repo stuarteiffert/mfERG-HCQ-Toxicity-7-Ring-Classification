@@ -7,6 +7,37 @@ This repository contains an interactive machine learning tool to predict Hydroxy
 - **Privacy-Focused**: The model runs entirely in your web browser using ONNX Runtime Web. No data is ever sent to a server.
 - **Easy Deployment**: Hosted as a static site on GitHub Pages.
 
+## Interpreting the Result
+The model outputs a probability of toxicity, `P(toxic)`. The page reports a
+three-state verdict together with a confidence value and a confidence bar.
+
+| Verdict | `P(toxic)` |
+| --- | --- |
+| Normal | below 0.30 |
+| Uncertain | 0.30 to 0.55 |
+| Toxic | above 0.55 |
+
+- **Decision threshold: 0.40**, based on external validation of this model. It is
+  set by `TOXIC_THRESHOLD` in `script.js`.
+- The **uncertain band** spans `UNCERTAIN_FRACTION` (0.25) of the distance from
+  the threshold to each extreme, so both bounds follow automatically if the
+  threshold changes.
+- **Confidence** scales the distance from the threshold onto 50%-100%: a result
+  sitting on the threshold is a coin flip (50%), and `P(toxic)` of 0 or 1 gives
+  100%. It never drops below 50%, since below that the other class would be
+  reported. Equivalently, "Uncertain" means confidence of 62.5% or less.
+
+> **Confidence is a distance from the decision boundary, not a calibrated risk.**
+> "82% confidence" does **not** mean "82% chance of toxicity". The model is an
+> uncalibrated random forest, so its probabilities reflect the proportion of
+> trees voting for a class.
+
+> **The displayed verdict intentionally differs from the model's own `label`
+> output.** That output is a fixed 0.5 argmax baked into the ONNX
+> `TreeEnsembleClassifier` and cannot be changed, so the page derives the
+> verdict from `P(toxic)` and the threshold above instead. The console logs a
+> warning whenever the two disagree.
+
 ## Browser Support
 Works in current versions of Chrome, Edge, Firefox and Safari, and on mobile.
 

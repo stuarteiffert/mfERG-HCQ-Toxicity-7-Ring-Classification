@@ -2,6 +2,7 @@
     --primary-color: #2c3e50;
     --accent-color: #3498db;
     --success-color: #27ae60;
+    --warning-color: #f39c12;
     --danger-color: #e74c3c;
     --bg-color: #f4f7f6;
     --card-bg: #ffffff;
@@ -169,6 +170,8 @@ button:disabled {
 .result-details {
     color: #555;
     font-size: 1.1rem;
+    margin-top: 0.25rem;
+    line-height: 1.5;
 }
 
 .indicator {
@@ -177,14 +180,24 @@ button:disabled {
     left: 0;
     height: 8px;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.08);
     transition: background-color 0.3s;
+}
+
+/* Fill spans the meaningful 50%-100% confidence range. */
+.confidence-fill {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s, background-color 0.3s;
 }
 
 .toxic { color: var(--danger-color); }
 .normal { color: var(--success-color); }
+.uncertain { color: var(--warning-color); }
 
 .bg-toxic { background-color: var(--danger-color); }
 .bg-normal { background-color: var(--success-color); }
+.bg-uncertain { background-color: var(--warning-color); }
 
 footer {
     margin-top: 3rem;
