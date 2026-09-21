@@ -109,6 +109,38 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.status-message {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--danger-color);
+    background-color: #fdedec;
+    color: #922b21;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.status-message.hidden {
+    display: none;
+}
+
+.status-message strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--danger-color);
+}
+
+.status-message code {
+    display: block;
+    margin-top: 0.6rem;
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
 .result-section {
     margin-top: 3rem;
     padding-top: 2rem;
